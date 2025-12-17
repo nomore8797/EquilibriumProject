@@ -1,0 +1,13 @@
+{
+  "name": "equilibrium-project",
+  "version": "1.0.0",
+  "description": "Adaptive Equilibrium module for GitHub and internship demo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Olga Mikhailova",
+  "license": "MIT",
+  "dependencies": {}
+}
