@@ -1,1 +1,46 @@
+# core.py
 
+class Module:
+    def __init__(self, name, baseline=1.0):
+        self.name = name
+        self.baseline = baseline
+        self.state = baseline
+
+    def load(self, delta):
+        self.state += delta
+
+    def deviation(self):
+        return abs(self.state - self.baseline)
+
+
+class EquilibriumCore:
+    def __init__(self):
+        self.modules = [
+            Module("StrategyEngine"),
+            Module("ResourceManager"),
+            Module("Audit"),
+            Module("AutocorrectionLayer"),
+            Module("InterfaceAdapter"),
+        ]
+        self.threshold = 1.0
+
+    def equilibrium_check(self):
+        total_deviation = sum(m.deviation() for m in self.modules)
+        return total_deviation <= self.threshold, total_deviation
+
+    def run(self):
+        print("=== Запуск ядра Equilibrium ===")
+
+        # имитация работы системы
+        self.modules[0].load(0.2)
+        self.modules[1].load(0.3)
+        self.modules[2].load(-0.1)
+
+        stable, deviation = self.equilibrium_check()
+
+        if stable:
+            print(f"[OK] Равновесие сохранено (Δ={deviation:.2f})")
+        else:
+            print(f"[ALERT] Нарушено равновесие (Δ={deviation:.2f})")
+
+        print("=== Ядро активно ===")
