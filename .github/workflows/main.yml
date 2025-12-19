@@ -1,25 +1,24 @@
+
 name: Equilibrium Core Check
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  equilibrium:
+  run-equilibrium:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: pip install --upgrade pip
+
       - name: Run Equilibrium Core
-        run: |
-          echo "=== Starting Equilibrium Core ==="
-          python core.py
-          echo "=== Execution finished ==="
+        run: python EquilibriumProject/run_equilibrium_core.py
